@@ -2,7 +2,7 @@ using ReactionMechanismSimulator.PyPlot
 using ReactionMechanismSimulator.YAML
 using Base.Meta
 
-results = YAML.load_file("results.yml")
+results = YAML.load_file("/home/gridsan/hwpang/Jobs/RMS_paper/preconditioner_20230803/results.yml")
 results = Dict(mechanism => eval(Meta.parse(result)) for (mechanism, result) in results)
 
 numspcs = []
