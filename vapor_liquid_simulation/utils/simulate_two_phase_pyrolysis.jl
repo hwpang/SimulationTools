@@ -37,7 +37,7 @@ initialconds = Dict("N2" => N2N, "T" => T, "P" => P)
 domaingas, y0gas, pgas = ConstantTPDomain(phase=gas, initialconds=initialconds);
 initialconds = Dict("N2" => N2N, "T" => T, "P" => P)
 inletgas = Inlet(domaingas, initialconds, x -> P * Vgas / R / T)
-outletgas = MaintainingVOutlet(domaingas)
+outletgas = VolumeMaintainingOutlet(domaingas)
 
 masstransferspcnames = getfield.(domainliq.phase.species, :name)
 vl, pinter = VaporLiquidMassTransferInternalInterfaceConstantT(domaingas, domainliq, masstransferspcnames);
