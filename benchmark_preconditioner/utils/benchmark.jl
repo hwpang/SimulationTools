@@ -7,21 +7,22 @@ using ReactionMechanismSimulator.PyPlot
 using ReactionMechanismSimulator.BenchmarkTools
 using Base.Threads
 
-results = Dict{String,Tuple{Tuple{Int64,Int64,Float64},Float64,Dict{Float64,Float64}}}()
+results = Dict()
 mechanisms = [
-    ("superminimal", "/home/gridsan/hwpang/Software/ReactionMechanismSimulator.jl/src/testing/superminimal.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "H2" => 1.0 / 0.5, "O2" => 1.0, "N2" => 4.0]), "superminimal_J.pdf"),
-    ("ethane", "/home/gridsan/hwpang/Software/ReactionMechanismSimulator.jl/src/testing/ethane.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "ethane" => 1.0 / 3.5, "O2" => 1.0, "Ar" => 4.0]), "ethane_J.pdf"),
-    ("sk68", "sk68.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]), "sk68_J.pdf"),
-    ("sk88", "sk88.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]), "sk88_J.pdf"),
-    ("sk188", "sk188.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]), "sk188_J.pdf"),
-    ("PME", "/home/gridsan/hwpang/Software/ReactionMechanismSimulator.jl/src/testing/propyl_methyl_ether.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "PME" => 0.005, "AR" => 0.995]), "PME_J.pdf"),
-    ("Curran", "Curran.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]), "Curran_J.pdf"),
-    ("dodecane1686", "dodecane1686.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "CCCCCCCCCCCC" => 1.0 / 18.5, "N2" => 4.0, "[O][O]" => 1.0]), "dodecane1686_J.pdf"),
+    ("superminimal", "/home/gridsan/hwpang/Software/ReactionMechanismSimulator.jl/src/testing/superminimal.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "H2" => 1.0 / 0.5, "O2" => 1.0, "N2" => 4.0]),),
+    ("ethane", "/home/gridsan/hwpang/Software/ReactionMechanismSimulator.jl/src/testing/ethane.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "ethane" => 1.0 / 3.5, "O2" => 1.0, "Ar" => 4.0]),),
+    ("sk68", "/home/gridsan/hwpang/Software/SimulationTools/benchmark_preconditioner/mechanism/sk68.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]),),
+    ("sk88", "/home/gridsan/hwpang/Software/SimulationTools/benchmark_preconditioner/mechanism/sk88.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]),),
+    ("sk188", "/home/gridsan/hwpang/Software/SimulationTools/benchmark_preconditioner/mechanism/sk188.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]),),
+    ("PME", "/home/gridsan/hwpang/Software/ReactionMechanismSimulator.jl/src/testing/propyl_methyl_ether.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "PME" => 0.005, "AR" => 0.995]),),
+    ("Curran", "/home/gridsan/hwpang/Software/SimulationTools/benchmark_preconditioner/mechanism/Curran.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "nc7h16" => 1.0 / 11.0, "n2" => 4.0, "o2" => 1.0]),),
+    ("dodecane1686", "/home/gridsan/hwpang/Software/SimulationTools/benchmark_preconditioner/mechanism/dodecane1686.rms", Dict(["T" => 1000.0, "P" => 10.0e5, "CCCCCCCCCCCC" => 1.0 / 18.5, "N2" => 4.0, "[O][O]" => 1.0]),),
 ]
 taus = [1e-6, 1e-5, 1e-4, 3e-4, 5e-4, 7e-4, 9e-4, 1e-3, 3e-3, 5e-3, 7e-3, 9e-3, 1e-2, 1e-1, 1e0]
 
 function run_test(results, mechanism, taus)
-    mechanism_name, input_path, initialconds, J_name = mechanism
+    mechanism_name, input_path, initialconds = mechanism
+    J_name = "$(mechanism_name)_J.pdf"
 
     println(mechanism_name)
     phaseDict = readinput(input_path)

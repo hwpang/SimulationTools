@@ -30,7 +30,8 @@ for (mech, result) in results
     push!(besttaus, taus[ind])
     push!(preconditioneddefaults, result[3][1e-3] / 1e9)
 end
-figure(figsize=(8, 8))
+
+figure()
 subplot(2, 2, 1)
 inds = sortperm(numspcs)
 plot(numspcs[inds], denses[inds], "s-", label="Dense", color="C0")
@@ -74,3 +75,5 @@ xlabel("Sparsity (%)")
 ylabel("τ")
 
 tight_layout()
+
+savefig("benchmark_preconditioner_taus.pdf")
