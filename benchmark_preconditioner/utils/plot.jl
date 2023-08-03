@@ -5,6 +5,8 @@ using Base.Meta
 results = YAML.load_file("/home/gridsan/hwpang/Jobs/RMS_paper/preconditioner_20230803/results.yml")
 results = Dict(mechanism => eval(Meta.parse(result)) for (mechanism, result) in results)
 
+taus = [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]
+
 numspcs = []
 denses = []
 preconditionedmaxs = []
