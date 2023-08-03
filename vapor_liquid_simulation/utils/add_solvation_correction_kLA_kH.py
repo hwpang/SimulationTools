@@ -53,6 +53,7 @@ vapor_liquid_mass_transfer.enable(
 
 solvliqspcs = liqspcs
 for spc in solvliqspcs:
+    print(spc)
     print(type(spc.molecule[0]))
     find_cp0_and_cpinf(spc, spc.thermo)
     spc.thermo = process_thermo_data(spc, spc.thermo, solvent_name=rmg.solvent)
