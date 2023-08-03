@@ -10,8 +10,8 @@ from rmgpy.data.vaporLiquidMassTransfer import (
     liquidVolumetricMassTransferCoefficientPowerLaw,
 )
 
-species_dictionary_path = "/home/gridsan/hwpang/Software/VaporLiquidPhaseSimulation/chemkin/species_dictionary.txt"
-chemkin_path = "/home/gridsan/hwpang/Software/VaporLiquidPhaseSimulation/chemkin/chemkin_annotated.inp"
+chemkin_path = "/home/gridsan/hwpang/Software/SimulationTools/vapor_liquid_simulation/chemkin/chemkin_annotated.inp"
+species_dictionary_path = "/home/gridsan/hwpang/Software/SimulationTools/vapor_liquid_simulation/chemkin/species_dictionary.txt"
 save_path = "chem_solvation_kLA_kH.rms"
 
 liqspcs, liqrxns = load_chemkin_file(
