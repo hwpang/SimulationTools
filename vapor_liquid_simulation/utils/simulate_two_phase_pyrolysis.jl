@@ -45,7 +45,7 @@ vl, pinter = VaporLiquidMassTransferInternalInterfaceConstantT(domaingas, domain
 domains = (domainliq, domaingas)
 interfaces = [vl, inletgas, outletgas]
 react, y0, p = Reactor(domains, (y0liq, y0gas), (0.0, tf), interfaces, (pliq, pgas, pinter));
-sol = solve(react.ode, react.recommendedsolver, abstol=1e-18, reltol=1e-6);
+@time sol = solve(react.ode, react.recommendedsolver, abstol=1e-18, reltol=1e-6)
 
 if !isdir("Figures")
     mkdir("Figures")
