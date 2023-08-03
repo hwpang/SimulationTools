@@ -1,6 +1,6 @@
 from rmgpy import settings
 from rmgpy.yml import write_yml
-from rmgpy.chemkin import save_chemkin, load_chemkin_file
+from rmgpy.chemkin import load_chemkin_file
 from rmgpy.rmg.main import RMG
 from rmgpy.data.thermo import find_cp0_and_cpinf
 from rmgpy.thermo.thermoengine import process_thermo_data
@@ -10,9 +10,9 @@ from rmgpy.data.vaporLiquidMassTransfer import (
     liquidVolumetricMassTransferCoefficientPowerLaw,
 )
 
-species_dictionary_path = "species_dictionary.txt"
-chemkin_path = "chem_annotated.inp"
-save_path = "chem_liquid_kLA_kH.rms"
+species_dictionary_path = "/home/gridsan/hwpang/Software/VaporLiquidPhaseSimulation/chemkin/species_dictionary.txt"
+chemkin_path = "/home/gridsan/hwpang/Software/VaporLiquidPhaseSimulation/chemkin/chemkin_annotated.inp"
+save_path = "chem_solvation_kLA_kH.rms"
 
 liqspcs, liqrxns = load_chemkin_file(
     chemkin_path,
