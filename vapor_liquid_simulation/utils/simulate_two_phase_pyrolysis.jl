@@ -8,7 +8,9 @@ using ReactionMechanismSimulator.StaticArrays
 using DataFrames
 using CSV
 
-input_file = "/home/gridsan/hwpang/Software/SimulationTools/vapor_liquid_simulation/mechanism/chem_solvation_kLA_kH.rms"
+# input_file = "/home/gridsan/hwpang/Software/SimulationTools/vapor_liquid_simulation/mechanism/chem_solvation_kLA_kH.rms"
+input_file = "/home/gridsan/hwpang/Jobs/RMS_paper/TwoPhaseSurrogate_20230803/chem_solvation_kLA_kH_debug.rms"
+
 Vliq = 1.0
 Vgas = 1.0
 T = 350 + 273.15
